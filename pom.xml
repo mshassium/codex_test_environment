@@ -83,6 +83,12 @@
             <artifactId>kotlin-stdlib</artifactId>
             <version>2.1.20</version>
         </dependency>
+        <!-- Client for working with OpenAI via koog-agents -->
+        <dependency>
+            <groupId>ai.koog</groupId>
+            <artifactId>koog-agents</artifactId>
+            <version>1.0.0</version>
+        </dependency>
     </dependencies>
 
 </project>
