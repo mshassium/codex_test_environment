@@ -1,16 +1,21 @@
 package org.mshassium.codex_test_environment
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-fun main() {
-    val name = "Kotlin"
-    //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-    // to see how IntelliJ IDEA suggests fixing it.
-    println("Hello, " + name + "!")
+/**
+ * Example entry point demonstrating the image redrawing service.
+ * Set environment variable `OPENAI_TOKEN` with your OpenAI API token
+ * and provide a base64 encoded image string as the first command line argument.
+ */
+fun main(args: Array<String>) {
+    val token = System.getenv("OPENAI_TOKEN")
+        ?: error("OPENAI_TOKEN environment variable is not set")
 
-    for (i in 1..5) {
-        //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-        // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-        println("i = $i")
+    if (args.isEmpty()) {
+        println("Please provide a base64 encoded image as the first argument")
+        return
     }
+
+    val inputImage = args[0]
+    val service = ImageRedrawService(token)
+    val result = service.redrawGhibli(inputImage)
+    println(result)
 }
